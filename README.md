@@ -10,7 +10,14 @@ Built on Red Hat UBI 8
     ```bash
     wget  https://hashcat.net/files/hashcat-6.2.6.7z
     ```
-  ### Unpack and copy into docker/hashcat directory, Note that 7zip archiver must be installed on system.
+  ### Install 7zip on [RHEL/CentOS](https://www.xmodulo.com/install-7zip-linux.html)
+  ```bash
+  yum install p7zip.x86_64 p7zip-plugins.x86_64
+  ```
+  ### Unpack and copy into docker/hashcat directory, Note that 7zip archiver must be installed on system. 
+  ```bash
+  7za x hashcat-6.2.6.7z
+  ```
   ### As alternative, use yum or dnf package manager
   ```bash    
   yum -y install hashcat

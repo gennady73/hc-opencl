@@ -1,0 +1,36 @@
+﻿kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: hashcat-web
+  namespace: hc-opencl
+  labels:
+    app: hashcat-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hashcat-web
+  template:
+    metadata:
+      labels:
+        app: hashcat-web
+        deployment: hashcat-web
+    spec:
+      containers:
+        - name: hashcat-web
+          image: docker.io/gennady73/hashcat-web
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+          # volumeMounts:
+          #   - name: hc-opencl-storage-claim
+          #     mountPath: /hashcat/tmp
+          imagePullPolicy: Always
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate

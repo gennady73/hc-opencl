@@ -45,11 +45,11 @@ RUN cd / && rm -rf /Python-3.10.12
 
 # Adapt containers to run on Red Hat OpenShift Container Platform
 # https://gitlab.com/gitlab-org/charts/gitlab/-/issues/1069 
-# https://developers.redhat.com/blog/2020/10/26/adapting-docker-and-kubernetes-containers-to-run-on-red-hat-openshift-container-platform# 
+# https://developers.redhat.com/blog/2020/10/26/adapting-docker-and-kubernetes-containers-to-run-on-red-hat-openshift-container-platform#group_ownership_and_file_permission
 #
 RUN chgrp -R 0 /hashcat \
  && chown hashcat:0 /hashcat \
- && chmod g+rws /hashcat
+ && chmod -R g=u /hashcat
 
 
 USER hashcat 
